@@ -1,19 +1,12 @@
 <?php
+require __DIR__.'/header.php';
 
-require __DIR__.'/vendor/autoload.php';
+$isConnected = false;
 
-use Unitato\Init\Article;
+if(isset($_SESSION['connected']) && $_SESSION['connected'] = true){
+    $isConnected = true;
+}
 
-$article = new Article();
-$slugify = new \Cocur\Slugify\Slugify();
-
-$title = 'Méerzg &, çef eznf. ! efzefoü ô';
-
-$article
-    ->setId(8)
-    ->setTitle($title)
-    ->setSlug($slugify->slugify($title))
-    ->setStatus(Article::STATUS_PENDING)
-;
-
-var_dump($article);
+echo $twig->render('index.html.twig',[
+    'isConnected' => $isConnected,
+]);
